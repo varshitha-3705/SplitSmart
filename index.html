@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SplitSmart: split bills with friends, scan receipts and see who owes whom.">
+  <meta name="theme-color" content="#4f46e5">
+  <title>SplitSmart</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>₹</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="logo" aria-hidden="true">₹</div>
+    <h1>SplitSmart</h1>
+    <p class="tagline">Split bills the smart way</p>
+    <div class="chips">
+      <span>Scan receipts</span>
+      <span>Fair split</span>
+      <span>Live sync</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card" aria-labelledby="h-people">
+      <h2 id="h-people"><span class="step" aria-hidden="true">1</span> Add people</h2>
+      <div class="row">
+        <input id="personName" type="text" placeholder="Name (e.g. Ravi)"
+               aria-label="Person's name" autocomplete="off"
+               onkeydown="if(event.key==='Enter')addPerson()">
+        <button type="button" onclick="addPerson()">Add</button>
+      </div>
+      <ul id="peopleList" aria-label="People in this group"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="h-scan">
+      <h2 id="h-scan"><span class="step"aria-hidden="true"></span>Scan receipt<span class="tag">optional</span></h2>
+      <div class="row">
+        <input type="file" id="receiptFile" accept="image/*"aria-label="Receipt photo">
+        <button type="button" onclick="scanReceipt()">Scan</button>
+      </div>
+      <p id="scanStatus"role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card"aria-labelledby="h-expense">
+      <h2 id="h-expense"><span class="step" aria-hidden="true">2</span>Add expense</h2>
+      <div class="row">
+        <input id="desc"type="text" placeholder="What for? (e.g.Dinner)"
+               aria-label="Expense description" autocomplete="off"
+               onkeydown="if(event.key==='Enter')addExpense()">
+        <input id="amount"type="number" inputmode="decimal" min="0" step="0.01"
+               placeholder="Amount (₹)" aria-label="Amount in rupees"
+               onkeydown="if(event.key==='Enter')addExpense()">
+        <select id="payer"aria-label="Who paid">
+          <option value="">Add people first</option>
+        </select>
+        <button type="button"onclick="addExpense()">Add expense</button>
+      </div>
+
+      <div class="history-head" id="historyHead" hidden>
+        <h3>History</h3>
+        <button type="button" class="reset-btn" onclick="resetHistory()">Reset history</button>
+      </div>
+      <ul id="expenseList" aria-label="Expense history"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="h-settle">
+      <h2 id="h-settle"><span class="step" aria-hidden="true">3</span>Who owes whom</h2>
+      <ul id="settlements"aria-live="polite"></ul>
+      <button type="button"class="reset-btn" onclick="resetAll()">Reset group</button>
+    </section>
+
+  </main>
+
+  <footer>
+    Built with HTML,CSS,JavaScript and Firebase
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
