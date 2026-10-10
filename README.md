@@ -1,4 +1,4 @@
-# SplitSmart – Smart Bill Splitting Web App
+# SplitSmart – Smart Bill Splitting
 
 SplitSmart is a web-based bill-splitting application designed to make sharing expenses easier, faster, and more organized. It aims to help friends, roommates, families, and groups calculate shared expenses without the confusion of manual calculations.
 
